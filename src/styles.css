@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3efe6;
+  --color-paper-2: #e6dfd2;
+  --color-ink: #1c1915;
+  --color-muted: #6f675e;
+  --color-line: #d5cdbf;
+  --color-teal: #0e5c56;
+  --color-teal-deep: #083f3b;
+  --color-rust: #9c3d32;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Public Sans", "Helvetica Neue", sans-serif;
+  --radius-sm: 2px;
+}
+
+/* Dark paper. Follows the OS unless data-theme pins it. Charts and tables read
+   the same tokens, so they follow too. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #171410;
+    --color-paper-2: #24201a;
+    --color-ink: #ece6da;
+    --color-muted: #a59c8e;
+    --color-line: #3b352c;
+    --color-teal: #5fb3aa;
+    --color-teal-deep: #8fd1c9;
+    --color-rust: #d8766a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-paper: #171410;
+  --color-paper-2: #24201a;
+  --color-ink: #ece6da;
+  --color-muted: #a59c8e;
+  --color-line: #3b352c;
+  --color-teal: #5fb3aa;
+  --color-teal-deep: #8fd1c9;
+  --color-rust: #d8766a;
+  color-scheme: dark;
+}
+
+/* Unlayered, so a host reset that sets body { font } cannot override the page's
+   own type and ground. */
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Side gutter that also clears a phone's side system bar. */
+.gutter {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 48rem) {
+  .gutter {
+    padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* The sticky header sits below the top inset; the band above it is painted
+   so nothing scrolls into view under the system bar. */
+.safe-top {
+  top: env(safe-area-inset-top, 0px);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--color-paper);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-feature-settings: "ss01";
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-teal);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+  }
+
+  input[type="range"] {
+    accent-color: var(--color-teal);
+    width: 100%;
+    height: 1.75rem;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
