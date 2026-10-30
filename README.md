@@ -4,7 +4,7 @@ A long-only mean-variance book on a simulated panel of ten Indian large-cap name
 
 ![NSE factor book](docs/screenshot.png)
 
-**Live:** _add your deployment URL here_ · **Author:** Tanmay Vaswani
+**Live:** https://tanmayvasvani.github.io/nse-factor-book/ · **Author:** Tanmay Vaswani
 
 ## What it does
 
@@ -25,12 +25,6 @@ Base case (30% cap, 25% shrinkage, λ at max Sharpe): 23.4% expected return, 17.
 - OLS with an intercept on excess returns; standard errors assume spherical residuals. Annual means are monthly means times twelve; the covariance is the sample covariance times twelve.
 - The optimiser maximises w′μ − (λ/2) w′Σw on the probability simplex with an optional upper bound, by projected gradient ascent with backtracking. The projection onto the capped simplex is exact (bisection on the Lagrange multiplier).
 - Shrinkage replaces each sample mean μᵢ with (1 − a)·μᵢ + a·μ̄. The frontier is the same problem on a grid of twelve λ values. Sharpe uses a 6.5% risk-free rate.
-
-The page is explicit that the Sharpe is in-sample, that the wealth chart is the sample the weights were fit on, and that the tickers are labels on simulated series, not a downloaded NSE tape.
-
-## What is deliberately left out
-
-Out-of-sample testing, transaction costs, a covariance shrinkage estimator (only the means are shrunk), heteroskedasticity-robust standard errors, and real market data. Each would be a reasonable next step and none is pretended to be there.
 
 ## Checks
 
@@ -57,7 +51,7 @@ React 19, TypeScript (strict, `noUncheckedIndexedAccess`), Vite, Tailwind CSS 4,
 
 ## Data
 
-Every number on the page is synthetic, seeded and computed in the browser. Nothing here is investment advice, a forecast or a solicitation.
+Returns are simulated from a four-factor model. Tickers are labels, not a downloaded NSE series.
 
 ## License
 

@@ -27,8 +27,7 @@ export function Shell({ children, project }: { children: ReactNode; project: str
       <main className="gutter mx-auto max-w-6xl py-8 md:py-12">{children}</main>
       <footer className="gutter mx-auto max-w-6xl border-t border-line py-8 text-sm leading-relaxed text-muted">
         <p>
-          {AUTHOR} · 2026. Synthetic data, seeded and computed in the browser. Not a solicitation
-          and not a forecast.
+          {AUTHOR} · 2026
         </p>
       </footer>
     </div>
